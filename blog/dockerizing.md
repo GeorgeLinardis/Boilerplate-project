@@ -1,7 +1,6 @@
-# Dockerizing your app
+# Create a docker file
 
-## Create a docker file
-`touch Dockerfile`
+First create an empty docker file by typing `touch Dockerfile`.
 
 Through this file we are going to add some instructions on how to build our container.
 
@@ -22,78 +21,87 @@ EXPOSE 3030
 ```
 
 In our docker file we have the following conventions based on the official docs.
-Comments are added using `#` e.g `# I am a comment` and commands are written with uppercase letters
+Comments are added using `#`
+
+e.g `# I am a comment`
+
+and commands are written with uppercase letters
+
 e.g `RUN` is a docker command
 
+## Breaking down each line
+
 `FROM node:latest`
-A docker file must begin with a FORM command, this command specifies 
+A docker file must begin with a FORM command, this command specifies
 the parent image you are going to use. This is not the node's version, it is the image's version we are using.
 
 `FROM` command initializes a new build stage.
 
 `WORKDIR` will be used by docker for anything needed inside guest
 
-`COPY . .`
+`COPY .. .`
 The `COPY` instruction copies new files or directories from `<src>` folder (from current folder) and adds them to the filesystem of the container at the path `<dest>`, in this example `app` folder
 
-`RUN mkdir -p /usr/src/app` which would behave as if you were running this command inside a UNIX shell
+`RUN mkdir -p /usr/src/app` will behave as if you were running this command inside a UNIX shell
 
 
 `EXPOSE 3030`
 This command will inform docker to start listening at that specific port at runtime
 
-`CMD` is the instruction used on how the container will run
+`CMD` is the command used on how the container will run
 
 ## Build the image
 
 OK! Let's test what we did by running inside the folder which contains the dockerfile:
 
-`docker build --tag george/testing_app:my_app .` (Don't forget the dot!)
+`docker build --tag george/portfolio:my_app .` (Don't forget the dot!)
 
-`-t` or `--tag` is for adding a tag in your image, that way you can distinguish it more easily from the other images you may have in your machine. The name after : meaning the `:first-app`, will be used as your docker image tag TODO
+`-t` or `--tag` is for adding a tag in your image, that way you can distinguish it more easily from the other images you may have in your machine. The name after : meaning the `:my_app`, will be used as your docker image tag.
 
-If you don't use the `:myapp` part it will tag your image with the default tag which is `latest`.
+If you don't use the `:my_app` part it will tag your image with the default tag which is `latest`.
 
-By using the `.` we tell the Docker daemon (known as `dockerd`) to fetch the file in the current directory.  
+By using the `.` we tell the Docker daemon (known as `dockerd`) to fetch the file in the current directory.
 
-By successfully finishing your build it should say: `Successfully tagged george/testing_app:my_app`
+By successfully finishing your build it should say: `Successfully tagged george/portolio:portfolio`
 
 Type `docker images` to see your images, you should see something like:
 
 ```
 REPOSITORY                 TAG                 IMAGE ID             CREATED             SIZE
-george/testing_app         my_app              <a random id here>   2 seconds ago       944MB
+george/portfolio         portfolio          <a random id here>      2 seconds ago       944MB
 
 ```
 
-`To remove it at any time while playing around type =  docker rm image george/testing_app:my_app`
+`To remove it at any time while playing around type =  docker rm image george/portfolio:portfolio`
 
 
 Now create a docker ignore file `touch .dockerignore` and add the following inside there:
 
 ```ignorelang
 .git
-.gitignore
+../.gitignore
 node_modules/
 ```
 
 ## Run the container
 
-Now lets run the container! 
-Inside the same folder you are type:
+Let's run the container! Just type:
 
-`docker run -d --name my-app george/testing_app`
+`docker run -d --name my_app george/portfolio:my_app`
 
-Remember if you add port 3030 on your dockerfile you should use it in your app as well.  
+Remember if you added port 3030 on your dockerfile you should use it in your app as well.  
 If though, you want different ports in these 2 (docker and your app) then you should define the port when running your container.
-So in this example our command would change to:  
+So in this example our command would change to:
 
-`docker run -d --port 3030:8888 --name my-app george/testing_app`  
+`docker run -d --port 3030:8888 george/portfolio:my_app`  
 Which would mean that 3030 would be our app's port and 8888 would be docker's port.  
 `docker run` means actually create and run
 
-We this command we are asking docker to run our my-app
-container with the following flags:
+With
+
+`docker exec -it my_app bash`
+
+command we are asking docker to run our `portfolio` container with the following flags:
 
 `--interactive -i`  
 Keep STDIN open even if not attached (from official docs)  
@@ -105,8 +113,8 @@ Make it behave as a terminal actually
 
 so `-it` means that we want to interact with it actually
 
-## USEFUL COMMANDS
-`docker ps` =  list containers  
+# USEFUL COMMANDS
+`docker ps` =  list containers
 
 `docker ps -a`  = lists all containers along with the closed ones etc..
 
