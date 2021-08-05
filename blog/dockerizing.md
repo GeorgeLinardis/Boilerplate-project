@@ -80,7 +80,6 @@ Now create a docker ignore file `touch .dockerignore` and add the following insi
 ```ignorelang
 .git
 ../.gitignore
-node_modules/
 ```
 
 ## Run the container
