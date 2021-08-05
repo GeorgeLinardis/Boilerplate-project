@@ -100,3 +100,67 @@ it will show the posted key-values.
 
 `npm install --save cookie-parser`
 cookie-parser is a middleware which parses cookies attached to the client request object.
+
+
+for eslint content
+
+
+## Extending airbnb - React addition
+If you add `"extends": "airbnb"` option to your `eslintrc.js` config file it will start asking for various eslint packages,
+e.g it might add `eslint-plugin-react` even if you don't have React installed. That will happen because you extend Airbnb eslint rules by adding the `extends...` config.
+
+Let's go for it.
+
+```js
+ // .eslintrc.js
+  const config = {
+    "extends": "airbnb",
+    "rules": {},
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+  };
+
+  module.exports = config;
+```
+you will also need the following packages to be installed
+
+```npm
+npm install --save-dev eslint-plugin-react
+npm install --save-dev eslint-plugin-jsx-a11y
+npm install --save-dev eslint-plugin-import
+```
+which is the same as :)
+```npm
+npm install --save-dev eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react
+```
+
+you will also need a `.eslintignore` file so you dont eslint on node_modules for example.
+
+Run `touch .eslintignore` and add `node_modules/**` for now.
+
+add babel-parser by set in your `.eslintrc.js` file
+
+```js
+  parser: "babel-eslint"
+```
+
+
+To avoid eslint rules applied to `.eslintrc.js` file add
+
+`/* eslint-disable */` for now at the top of the file.
+
+
+#### `-ext` flag
+This option allows you to specify which file extensions ESLint will use when searching for target files in the directories you specify. By default, ESLint lints *.js files and the files that match the overrides entries of your configuration.
+
+So add for future use in your script section the following lint script for jsx and js files
+
+`"lint-all": "eslint --config .eslintrc.js --ext .js,.jsx ./"`
+
+
+
+
