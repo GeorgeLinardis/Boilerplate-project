@@ -35,3 +35,4 @@ I tried to create a new file for each step I took so that I wouldn't end up crea
 - [Using docker-compose](adding-docker-compose.md)
 - [Adding simple server with nodemon and es6](create-server-with-babel.md)
 - [Eslint configuration](eslint.md)
+- [Webpack - goodbye world!](webpack.md)
