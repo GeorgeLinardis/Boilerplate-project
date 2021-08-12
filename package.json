@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node index.js",
-    "lint": "eslint --config .eslintrc.js ./"
+    "start": "webpack serve --open --config webpack/config.babel.js",
+    "lint": "eslint --config .eslintrc.js ./",
+    "build": "webpack --config webpack/config.babel.js"
   },
   "repository": {
     "type": "git",
@@ -19,13 +20,21 @@
   },
   "homepage": "https://github.com/GeorgeLinardis/portfolio#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "webpack": "^5.49.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.8",
     "@babel/core": "^7.15.0",
     "@babel/node": "^7.14.9",
     "@babel/preset-env": "^7.15.0",
-    "eslint": "^7.32.0"
+    "babel-register": "^6.26.0",
+    "css-loader": "^6.2.0",
+    "eslint": "^7.32.0",
+    "sass": "^1.37.5",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.2.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
   }
 }
