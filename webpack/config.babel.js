@@ -8,9 +8,12 @@ const config =  {
   devtool: 'eval-source-map',
   mode: 'development',
   devServer: {
-    contentBase: './dist',
+    contentBase: '/build/',
     host: '0.0.0.0',
     port: 3030,
+    quiet: true,
+    inline: true,
+    publicPath: '/build/',
   },
   entry: path.join(rootPath, 'src/index'),
   output: {

@@ -365,7 +365,7 @@ To your config
 const config =  {
   ...
   devServer: {
-    contentBase: './dist',
+   contentBase: '/build/',
 },
 
 ```
@@ -393,7 +393,7 @@ so we need our port in the dev server config
 const config =  {
   ...
   devServer: {
-    contentBase: './dist',
+    contentBase: '/build/',
     port: 3030,
 },
 
@@ -412,7 +412,7 @@ Adding host in your config may do the trick
 const config =  {
   ...
   devServer: {
-    contentBase: './dist',
+    contentBase: '/build/',
     host: '0.0.0.0',
     port: 3030,
 },
