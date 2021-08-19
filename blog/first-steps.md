@@ -33,6 +33,6 @@ What's next?
 I tried to create a new file for each step I took so that I wouldn't end up creating a huge instructions file.So next steps would be: 
 - [Dockerizing it](dockerizing.md)
 - [Using docker-compose](adding-docker-compose.md)
-- [Adding simple server with nodemon and es6](create-server-with-babel.md)
 - [Eslint configuration](eslint.md)
 - [Webpack - goodbye world!](webpack.md)
+- [Adding front part](front-part.md)

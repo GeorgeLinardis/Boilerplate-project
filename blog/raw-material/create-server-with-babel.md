@@ -1,11 +1,11 @@
-# Creating a server for the first time, using express.js
+# Creating a server for the first time, using express.js - WIP - is this needed???
 
 ## Adding express.js
 
 
 - Install express.js and nodemon inside your container
 `npm install --save express`
-`npm install -g nodemon`
+`npm install nodemon`
 
 Add inside your `.gitignore` and your `.dockerignore` file `node_modules` folder.
 
