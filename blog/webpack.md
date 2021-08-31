@@ -58,7 +58,7 @@ import path from 'path';
 import { ENV_DEVELOPMENT, NODE_ENV } from 'config/envs';
 
 const rootPath = process.cwd();
-const buildPath = path.join(rootPath, 'build');
+const buildPath = path.join(rootPath, 'public');
 
 const config =  {
   entry: path.join(rootPath, 'src/index'),
@@ -178,7 +178,7 @@ import path from 'path';
 import { ENV_DEVELOPMENT, NODE_ENV } from 'config/envs';
 
 const rootPath = process.cwd();
-const buildPath = path.join(rootPath, 'build');
+const buildPath = path.join(rootPath, 'public');
 
 const config =  {
   entry: path.join(rootPath, 'src/index'),
@@ -340,6 +340,8 @@ _If you are in any of your projects and you want to commit anything remember to 
 
 Break please!! go and eat something please! I am eating ice cream while writing this and fighting through flames and horror to make it till the end!
 
+
+
 Let's add the dev server now.You should already be tired of copy pasting the same build command right?
 
 To remove the development flag from our script lets change, for now, our config to:
@@ -355,69 +357,99 @@ and remove the mode flag from our scripts, new script should be
 
 `"build": "webpack --config webpack/config.babel.js"`.
 
-Let's proceed with add our webpack server, start by running the following command
+// Lets add the server later shall we?
 
-`npm install --save-dev webpack-dev-server`
 
-To your config
+[comment]: <> (Let's proceed with add our webpack server, start by running the following command)
 
-```js
-const config =  {
-  ...
-  devServer: {
-   contentBase: '/build/',
-},
+[comment]: <> (`npm install --save-dev webpack-dev-server`)
 
-```
+[comment]: <> (To your config)
 
-We have asked our server to serve file from inside the dist folder, lets add a script for our server to see it coming alive.
+[comment]: <> (```js)
 
-```json
-  "scripts": {
-    ...
-    "start": "webpack serve --open --config webpack/config.babel.js",
-}
+[comment]: <> (const config =  {)
 
-```
+[comment]: <> (  ...)
 
-`npm start` please! Oh that beautiful message that my app is running but where is the window opening in the browser?
+[comment]: <> (  devServer: {)
 
-If you have been here from the beginning of this posts, regardless of the fact that you need to tell me your name so I can thank you for reading my memoires! 
-You should also remember that we are using docker.
+[comment]: <> (   contentBase: '/build/',)
 
-So? That means that our server is running in our guest and we need to tell our host to where ou guest is showing whatever it's showing.
+[comment]: <> (},)
 
-so we need our port in the dev server config
+[comment]: <> (```)
 
-```js
-const config =  {
-  ...
-  devServer: {
-    contentBase: '/build/',
-    port: 3030,
-},
+[comment]: <> (We have asked our server to serve file from inside the dist folder, lets add a script for our server to see it coming alive.)
 
-```
- this is the same as the one we added on the mapping of `docker-compose.yml` file.
+[comment]: <> (```json)
 
-You should see it saying ,when you run your server, running on localhost:3030. 
+[comment]: <> (  "scripts": {)
 
-##### case of localhost vs 0.0.0.0
-That was a hard one...
+[comment]: <> (    ...)
 
-It might be a case where it says _Running on localhost:3030_ but when you visit it on your browser it still doesnt work.
-Adding host in your config may do the trick
+[comment]: <> (    "start": "webpack serve --open --config webpack/config.babel.js",)
 
-```js
-const config =  {
-  ...
-  devServer: {
-    contentBase: '/build/',
-    host: '0.0.0.0',
-    port: 3030,
-},
-```
+[comment]: <> (})
 
-Why? I may answer sometime in the future.. right now I don't have the knowledge to do so... sorry :)
+[comment]: <> (```)
+
+[comment]: <> (`npm start` please! Oh that beautiful message that my app is running but where is the window opening in the browser?)
+
+[comment]: <> (If you have been here from the beginning of this posts, regardless of the fact that you need to tell me your name so I can thank you for reading my memoires! )
+
+[comment]: <> (You should also remember that we are using docker.)
+
+[comment]: <> (So? That means that our server is running in our guest and we need to tell our host to where ou guest is showing whatever it's showing.)
+
+[comment]: <> (so we need our port in the dev server config)
+
+[comment]: <> (```js)
+
+[comment]: <> (const config =  {)
+
+[comment]: <> (  ...)
+
+[comment]: <> (  devServer: {)
+
+[comment]: <> (    contentBase: '/build/',)
+
+[comment]: <> (    port: 3030,)
+
+[comment]: <> (},)
+
+[comment]: <> (```)
+
+[comment]: <> ( this is the same as the one we added on the mapping of `docker-compose.yml` file.)
+
+[comment]: <> (You should see it saying ,when you run your server, running on localhost:3030. )
+
+[comment]: <> (##### case of localhost vs 0.0.0.0)
+
+[comment]: <> (That was a hard one...)
+
+[comment]: <> (It might be a case where it says _Running on localhost:3030_ but when you visit it on your browser it still doesnt work.)
+
+[comment]: <> (Adding host in your config may do the trick)
+
+[comment]: <> (```js)
+
+[comment]: <> (const config =  {)
+
+[comment]: <> (  ...)
+
+[comment]: <> (  devServer: {)
+
+[comment]: <> (    contentBase: '/build/',)
+
+[comment]: <> (    host: '0.0.0.0',)
+
+[comment]: <> (    port: 3030,)
+
+[comment]: <> (},)
+
+[comment]: <> (```)
+
+[comment]: <> (Why? I may answer sometime in the future.. right now I don't have the knowledge to do so... sorry :&#41;)
 
 

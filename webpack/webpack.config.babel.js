@@ -1,25 +1,27 @@
 import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+
 import { ENV_DEVELOPMENT, NODE_ENV } from '../config/envs';
 
 const rootPath = process.cwd();
-const buildPath = path.join(rootPath, 'build');
+const buildPath = path.join(rootPath, 'public');
+const templatesPath = path.join(rootPath, 'templates');
 
 const config =  {
   devtool: 'eval-source-map',
   mode: 'development',
-  devServer: {
-    contentBase: '/build/',
-    host: '0.0.0.0',
-    port: 3030,
-    quiet: true,
-    inline: true,
-    publicPath: '/build/',
-  },
   entry: path.join(rootPath, 'src/index'),
   output: {
     path: buildPath,
     filename: NODE_ENV === ENV_DEVELOPMENT ? '[name].js' : '[name].[hash].js',
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      title: 'My app',
+      template: path.join(templatesPath, 'index.html'),
+    })
+  ],
   module: {
     rules: [
       {
@@ -41,6 +43,11 @@ const config =  {
           "sass-loader",
         ],
       },
+      {
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+      }
     ]
   },
 }

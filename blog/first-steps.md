@@ -35,4 +35,4 @@ I tried to create a new file for each step I took so that I wouldn't end up crea
 - [Using docker-compose](adding-docker-compose.md)
 - [Eslint configuration](eslint.md)
 - [Webpack - goodbye world!](webpack.md)
-- [Adding front part](front-part.md)
+- [Connecting parts](connecting-parts.md)
